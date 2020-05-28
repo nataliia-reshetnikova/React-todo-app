@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import TodoList from './todos/TodoList';
 import Context from './context';
+import AddTodo from './todos/AddTodo';
 
 function App() {
   /*in function useState we need to include state 
@@ -22,7 +23,11 @@ function App() {
       return todo;
     }));
   }
-
+  function addTodo(value){
+    setTodos(
+      todos.concat([{id:Date.now(), description:value, completed:false}])
+    );
+  }
   function removeTodo(id){
     setTodos(todos.filter(todo=>todo.id !== id));
   }
@@ -30,6 +35,7 @@ function App() {
     <Context.Provider value={{removeTodo:removeTodo}}>
     <div className="App">
       <h1>To Do's</h1>
+      <AddTodo onCreate={addTodo}/>
       {todos.length? <TodoList todos={todos} onToggle={toggleTodo}/>:<h4>no todos</h4>}
     </div>
     </Context.Provider>
