@@ -12,3 +12,6 @@ li {
     border:1px solid lightgray;
     border-radius: 5px;
 }
+.done{
+    text-decoration: line-through;
+}
